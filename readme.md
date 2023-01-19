@@ -24,5 +24,5 @@ Definition of the different states and their transition (transition functions)
 List of tasks in order of priority
 
 ## Links
-Github repository Link
-Deployment Link
+- [Github repository Link](https://github.com/w1lkns/pong-tennis-js/)
+- Deployment Link

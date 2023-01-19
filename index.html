@@ -5,9 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Wire+One&display=swap');
+    </style>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    
+    <div id="start-game" style="display: none;">
+        <h1>TENNIS</h1>
+            <p>How to play:</p>
+                <p>1) Use the up and down arrow to move</p>
+                <p>2) Score 10 points to win!</p>
+                <h2 onclick="startGame()">CLICK HERE TO START THE GAME</h2>
+    </div>
+    
+    <canvas id="game-area" style="display: block;"></canvas>
+
+    <div id="game-over" style="display: none;">
+        <h1>GAME OVER</h1>
+            <H1>PLAYER X WINS</H1>
+                <h2 onclick="startGame()">CLICK HERE TO RESTART THE GAME</h2>
+    </div>
     
     <script src="./js/main.js"></script>
 </body>
