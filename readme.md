@@ -28,6 +28,11 @@ Definition of the different states and their transition (transition functions)
 - create right-wall component
 - define MVP game logic
 
+## Resources and references 
+- [MDN Dashed line](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
+- [Eloquent Javascript](https://eloquentjavascript.net/)
+
+
 ## Links
 - [Github repository Link](https://github.com/w1lkns/pong-tennis-js/)
 - Deployment Link
