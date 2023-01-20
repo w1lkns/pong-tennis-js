@@ -21,7 +21,12 @@ Definition of the different states and their transition (transition functions)
 - gameOverScreen
 
 ## Task
-List of tasks in order of priority
+- fill screen
+- add divider
+- add score
+- create player component
+- create right-wall component
+- define MVP game logic
 
 ## Links
 - [Github repository Link](https://github.com/w1lkns/pong-tennis-js/)
