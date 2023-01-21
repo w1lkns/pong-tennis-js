@@ -35,4 +35,4 @@ Definition of the different states and their transition (transition functions)
 
 ## Links
 - [Github repository Link](https://github.com/w1lkns/pong-tennis-js/)
-- [Deployment Link] (https://w1lkns.github.io/pong-tennis-js/)
+- [Deployment Link](https://w1lkns.github.io/pong-tennis-js/)
