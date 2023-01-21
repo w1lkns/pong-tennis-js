@@ -1,6 +1,7 @@
 // init important variables
 let canvas,ctx,loop;
 let ball,player1,score;
+let fps = 1000/60;
 
 // define canvas and context
 canvas = document.getElementById('game-area')
@@ -16,24 +17,33 @@ function drawScore() {
     ctx.fillText(`${score}`, 550, 50);
   }
 
-// red square -> placeholder for player1
+// middle line - refactored as a function
+function drawNet(){
+    ctx.beginPath();
+    ctx.moveTo(636,0);
+    ctx.setLineDash([15, 13]);
+    ctx.lineTo(640,720);
+    ctx.lineWidth = 7;
+    ctx.strokeStyle = '#FFF';
+    ctx.stroke();
+    ctx.closePath();
+}
+// drawing rectangles refactored as function
 
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
+function drawRect(x,y,width,height,color){
+    ctx.fillStyle = color;
+    ctx.fillRect(x,y,width,height);
+    ctx.fill()
+}
 
-// middle line
+// drawing circle
 
-ctx.beginPath();
-ctx.moveTo(636,0);
-ctx.setLineDash([15, 13]);
-ctx.lineTo(640,720);
-ctx.lineWidth = 7;
-ctx.strokeStyle = '#FFF';
-ctx.stroke();
-ctx.closePath();
+function drawCircle(x,y,size,color){
+    ctx.beginPath();
+    ctx.fillStyle = color;
+    ctx.arc(x,y,size,0,Math.PI * 2)
+    ctx.fill();
+}
 
 function startGame() {
     console.log('Game is starting! ');
@@ -46,7 +56,7 @@ function startGame() {
     game.style.display = 'block'
     over.style.display = 'none'
     // print score
-    drawScore();
+    
     // function to start the game
     start();
 }
@@ -54,7 +64,7 @@ function startGame() {
 loop = setInterval(() => {
     update();
     render();
-}, 1000/60);
+}, fps);
 
 function init (){
 
@@ -62,10 +72,14 @@ function init (){
 
 function update() {
     console.log('this will update')
+    
+    
 }
 
 function render(){
-    console.log('rendering')
+    drawNet();
+    drawScore();
+    drawBall();
 }
 
 function stopGame() {
