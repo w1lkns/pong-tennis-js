@@ -42,7 +42,7 @@ function move(){
         }
 	}
 	if(down) {
-        if (player1.y < canvas.height - 10){
+        if ((player1.y + player1.height) < canvas.height - 10){
 		player1.y += player1.speed;	
         } else {
             return;
