@@ -1,5 +1,5 @@
 // init important variables
-let canvas,ctx,loop;
+let loop;
 let player1;
 let ball,score;
 let fps = 1000/60;
@@ -10,20 +10,7 @@ canvas = document.getElementById('game-area')
 ctx = canvas.getContext('2d');
 
 init();
-addEventListener('keydown', (e) => {
-    let rect = canvas.getBoundingClientRect();
-    let root = document.documentElement
-    
-    switch (e.key) {
-        case "ArrowUp": // left arrow
-          player1.y -= 60;
-          break;
-        case "ArrowDown": // right arrow
-          player1.y += 60;
-          break;
-      }
 
-})
 loop = setInterval(() => {
     update();
     render();
@@ -41,6 +28,30 @@ function drawScore() {
     ctx.fillStyle = "#FFF";
     ctx.fillText(`${score}`, 550, 50);
   }
+
+// converting movement into function
+let up = false;
+let down = false;
+
+function move(){
+    if(up) { 
+		player1.y -= player1.speed;
+	}
+	if(down) {
+		player1.y += player1.speed;	
+	}
+
+    document.onkeydown = function(e) {
+        if(e.key == 'ArrowUp') up = true;
+        if(e.key == 'ArrowDown') down = true;
+    }
+    
+    document.onkeyup = function(e) {
+        if(e.key == 'ArrowUp') up = false;
+        if(e.key == 'ArrowDown') down = false;
+    }
+
+}
 
 // middle line - refactored as a function
 function drawNet(){
@@ -94,6 +105,7 @@ function init (){
         offset:35,
         x:10,
         y:(canvas.height / 2)-50,
+        speed: 10,
         color: '#fff',
     }
     ball = {
@@ -108,6 +120,7 @@ function init (){
 
 function update() {
     moveBall(); 
+    move();
     //movePlayer(player1); 
     hitPlayer(player1)  
 } 
