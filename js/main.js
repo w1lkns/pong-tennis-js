@@ -34,11 +34,19 @@ let up = false;
 let down = false;
 
 function move(){
-    if(up) { 
-		player1.y -= player1.speed;
+    if(up) {
+        if (player1.y > 10){
+        player1.y -= player1.speed;
+        } else {
+            return;
+        }
 	}
 	if(down) {
+        if (player1.y < canvas.height - 10){
 		player1.y += player1.speed;	
+        } else {
+            return;
+        }
 	}
 
     document.onkeydown = function(e) {
@@ -122,7 +130,7 @@ function update() {
     moveBall(); 
     move();
     //movePlayer(player1); 
-    hitPlayer(player1)  
+    hitPlayer(player1);
 } 
 
 function render(){
@@ -168,8 +176,6 @@ function moveBall(){
     // bounce right
     if (ball.x > canvas.width){
         ball.xv = -ball.xv;
-        //ball.xv *= 1.2;
-        //ball.yv *= 1.2;
     }
 }
 
@@ -203,7 +209,7 @@ function hitPlayer(player){
     if (collide){
         ball.xv = -ball.xv;
         ball.yv = deltaY(player) * 0.25;
-        //add to score - needs changing
+        //add to score when ball hit
         score++;
     }
 }
