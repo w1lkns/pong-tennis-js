@@ -21,7 +21,7 @@ loop = setInterval(() => {
 
 score = 0;
 
-if (score == 10) stopGame();
+
 
 function drawScore() {
     ctx.font = "42px Verdana";
@@ -131,6 +131,8 @@ function update() {
     move();
     //movePlayer(player1); 
     hitPlayer(player1);
+    // stopGame after 10 points - Will uncomment when finish
+    //if (score == 10) stopGame();
 } 
 
 function render(){
