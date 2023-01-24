@@ -9,12 +9,15 @@ window.onload = function(){
 canvas = document.getElementById('game-area')
 ctx = canvas.getContext('2d');
 
-init();
+}
 
-loop = setInterval(() => {
+function startPlaying(){
+    init();
+
+    loop = setInterval(() => {
     update();
     render();
-}, fps);
+        }, fps);
 }
 
 // init score
@@ -22,8 +25,16 @@ loop = setInterval(() => {
 score = 0;
 lives = 3;
 
+
+
 function drawLives(){
-    
+    const img = new Image();
+    img.src = './../media/heart.png'
+    img.onload = function() {
+        ctx.drawImage(img, 50,50,25,25)
+        ctx.drawImage(img, 80,50,25,25)
+        ctx.drawImage(img, 110,50,25,25)
+    }
 }
 
 function drawScore() {
@@ -103,7 +114,7 @@ function startGame() {
     // print score
     
     // function to start the game
-    //start();
+    startPlaying();
 }
 
 
@@ -133,6 +144,7 @@ function update() {
     move();
     //movePlayer(player1); 
     hitPlayer(player1);
+    
     // stopGame after 10 points - Will uncomment when finish
     if (score == 10) stopGame();
 } 
