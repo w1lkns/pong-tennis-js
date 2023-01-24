@@ -1,6 +1,6 @@
 // init important variables
 let loop;
-let player1;
+let player1,player2;
 let ball,score,lives;
 let fps = 1000/60;
 
@@ -50,6 +50,9 @@ function move(){
             return;
         }
 	}
+
+    //limit move for player 2
+
 
     document.onkeydown = function(e) {
         if(e.key == 'ArrowUp') up = true;
@@ -111,8 +114,16 @@ function init (){
     player1 = {
         width:20,
         height:100,
-        offset:35,
         x:10,
+        y:(canvas.height / 2)-50,
+        speed: 10,
+        color: '#fff',
+    }
+    player2 = {
+        width:20,
+        height:100,
+        offset:35,
+        x:canvas.width - 30,
         y:(canvas.height / 2)-50,
         speed: 10,
         color: '#fff',
@@ -130,11 +141,12 @@ function init (){
 function update() {
     moveBall(); 
     move();
-    //movePlayer(player1); 
+    movePlayer(player2); 
     hitPlayer(player1);
+    hitPlayer(player2);
     
     // stopGame after 10 points - Will uncomment when finish
-    if (score == 10) stopGame();
+    if (score == highscore) stopGame();
 } 
 
 function render(){
@@ -142,6 +154,7 @@ function render(){
     drawNet();
     drawScore();
     drawRect(player1.x,player1.y,player1.width,player1.height,player1.color);
+    drawRect(player2.x,player2.y,player2.width,player2.height,player2.color);
     drawCircle(ball.x,ball.y,ball.size,ball.color)
 }
 
@@ -155,6 +168,7 @@ function stopGame() {
     over.style.display = 'block'
 
     score = 0;
+    start();
 }
 
 // Ball movement
@@ -174,7 +188,10 @@ function moveBall(){
     }
     // bounce right
     if (ball.x > canvas.width){
-        ball.xv = -ball.xv;
+        let random = Math.floor(Math.random() * 18)
+        ball.x = (canvas.width/2);
+        ball.y = (canvas.height/2);
+        ball.xv, ball.yv = -random;
     }
 }
 
