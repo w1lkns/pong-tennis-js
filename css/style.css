@@ -7,9 +7,13 @@ body{
     align-content: center;
     margin: 0px;
     padding: 0px;
-    
-    
 }
+
+#game-start a, 
+#game-over a{
+    text-decoration: none;
+}
+
 h1,
 h2,
 p{
