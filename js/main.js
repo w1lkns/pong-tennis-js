@@ -1,7 +1,7 @@
 // init important variables
 let loop;
 let player1;
-let ball,score;
+let ball,score,lives;
 let fps = 1000/60;
 
 // define canvas and context
@@ -20,8 +20,11 @@ loop = setInterval(() => {
 // init score
 
 score = 0;
+lives = 3;
 
-
+function drawLives(){
+    
+}
 
 function drawScore() {
     ctx.font = "42px Verdana";
@@ -88,11 +91,10 @@ function drawCircle(x,y,size,color){
     ctx.fill();
 }
 
-/*function startGame() {
-    console.warning('Game is starting! ');
-    let start = document.getElementById('game-start')
-    let game = document.getElementById('game-area')
-    let over = document.getElementById('game-over')
+function startGame() {
+    let start = document.getElementById('game-start');
+    let game = document.getElementById('game-area');
+    let over = document.getElementById('game-over');
     //diplay none for start game screen
     //display "" for game-area
     start.style.display = 'none'
@@ -101,8 +103,8 @@ function drawCircle(x,y,size,color){
     // print score
     
     // function to start the game
-    start();
-}*/
+    //start();
+}
 
 
 
@@ -132,7 +134,7 @@ function update() {
     //movePlayer(player1); 
     hitPlayer(player1);
     // stopGame after 10 points - Will uncomment when finish
-    //if (score == 10) stopGame();
+    if (score == 10) stopGame();
 } 
 
 function render(){
@@ -152,13 +154,7 @@ function stopGame() {
     game.style.display = 'none'
     over.style.display = 'block'
 
-    //document.getElementById('game-area').style.display = 'none';
-    //document.getElementById('game-over').style.display = '';
-    //display none for game area
-    //display "" for game over screen
-
-    // reset values here
-    // clear interval
+    score = 0;
 }
 
 // Ball movement
