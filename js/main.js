@@ -23,19 +23,7 @@ function startPlaying(){
 // init score
 
 score = 0;
-lives = 3;
-
-
-
-function drawLives(){
-    const img = new Image();
-    img.src = './../media/heart.png'
-    img.onload = function() {
-        ctx.drawImage(img, 50,50,25,25)
-        ctx.drawImage(img, 80,50,25,25)
-        ctx.drawImage(img, 110,50,25,25)
-    }
-}
+highscore = 10;
 
 function drawScore() {
     ctx.font = "42px Verdana";
@@ -121,7 +109,7 @@ function startGame() {
 
 function init (){
     player1 = {
-        width:15,
+        width:20,
         height:100,
         offset:35,
         x:10,
@@ -175,9 +163,10 @@ function moveBall(){
     ball.y = ball.y + ball.yv;
     // lose point
     if (ball.x <= 0){
+        let random = Math.floor(Math.random() * 18)
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
-        ball.xv, ball.yv = 8;
+        ball.xv, ball.yv = random;
     }
     // bounce top bottom
     if (ball.y >= canvas.height || ball.y <= 0){
