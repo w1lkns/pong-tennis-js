@@ -2,7 +2,7 @@
 let loop;
 let player1,player2;
 let ball;
-let highscore,score;
+let highscore,scorePlayer1,scorePlayer2;
 let fps = 1000/60;
 
 // define canvas and context
@@ -23,13 +23,20 @@ function startPlaying(){
 
 // init score
 
-score = 0;
+scorePlayer1 = 0;
+scorePlayer2 = 0;
 highscore = 10;
 
-function drawScore() {
-    ctx.font = "42px Verdana";
+function drawScorePlayer1() {
+    ctx.font = "100px Verdana";
     ctx.fillStyle = "#FFF";
-    ctx.fillText(`${score}`, 550, 50);
+    ctx.fillText(`${scorePlayer1}`, (canvas.width/2) - 130, 120);
+  }
+
+  function drawScorePlayer2() {
+    ctx.font = "100px Verdana";
+    ctx.fillStyle = "#FFF";
+    ctx.fillText(`${scorePlayer2}`, (canvas.width/2) + 60, 120);
   }
 
 // converting movement into function
@@ -103,7 +110,6 @@ function startGame() {
     start.style.display = 'none'
     game.style.display = 'block'
     over.style.display = 'none'
-    // print score
     
     // function to start the game
     startPlaying();
@@ -133,8 +139,8 @@ function init (){
         size:18,
         x:(canvas.width / 2),
         y:(canvas.height / 2),
-        xv:8,
-        yv:8,
+        xv:10,
+        yv:10,
         color: '#fff',
     }
 }
@@ -147,13 +153,23 @@ function update() {
     hitPlayer(player2);
     
     // stopGame after 10 points - Will uncomment when finish
-    if (score == highscore) stopGame();
+    if (scorePlayer1 == highscore){
+        let winner1 = document.getElementById('winner')
+        winner1.innerHTML = "Player 1 Wins"
+        stopGame();
+       
+    } else if (scorePlayer2 == highscore){
+        let winner2 = document.getElementById('winner')
+        winner2.innerHTML = "Player 2 Wins"
+        stopGame();
+    }
 } 
 
 function render(){
     drawRect(0,0,canvas.width,canvas.height,'black')
     drawNet();
-    drawScore();
+    drawScorePlayer1();
+    drawScorePlayer2();
     drawRect(player1.x,player1.y,player1.width,player1.height,player1.color);
     drawRect(player2.x,player2.y,player2.width,player2.height,player2.color);
     drawCircle(ball.x,ball.y,ball.size,ball.color)
@@ -168,31 +184,32 @@ function stopGame() {
     game.style.display = 'none'
     over.style.display = 'block'
 
-    score = 0;
-    start();
+    scorePlayer1 = 0;
+    scorePlayer2 = 0;
+    ball.xv = 8;
+    ball.yv = 8;
 }
 
 // Ball movement
 function moveBall(){
     ball.x = ball.x + ball.xv;
     ball.y = ball.y + ball.yv;
-    // lose point
+    // Player 1 let the ball pass
     if (ball.x <= 0){
-        let random = Math.floor(Math.random() * 18)
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
-        ball.xv, ball.yv = random;
+        ball.xv, ball.yv = 8;
+        scorePlayer2++;
     }
     // bounce top bottom
     if (ball.y >= canvas.height || ball.y <= 0){
         ball.yv = -ball.yv;
     }
-    // bounce right
+    // Player 2 let the ball pass
     if (ball.x > canvas.width){
-        let random = Math.floor(Math.random() * 18)
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
-        ball.xv, ball.yv = -random;
+        scorePlayer1++;
     }
 }
 
@@ -203,7 +220,7 @@ function movePlayer(player){
         player.y += 10;
     } 
     else if (centerY > ball.y + player.offset){
-        player.y -=10;
+        player.y -= 10;
     } 
 }
 
@@ -226,7 +243,5 @@ function hitPlayer(player){
     if (collide){
         ball.xv = -ball.xv;
         ball.yv = deltaY(player) * 0.25;
-        //add to score when ball hit
-        score++;
     }
 }
