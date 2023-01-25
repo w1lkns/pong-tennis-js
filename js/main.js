@@ -1,7 +1,8 @@
 // init important variables
 let loop;
 let player1,player2;
-let ball,score,lives;
+let ball;
+let highscore,score;
 let fps = 1000/60;
 
 // define canvas and context
