@@ -1,7 +1,6 @@
 // init important variables
 let loop;
 let player1,player2;
-let ball;
 let highscore,scorePlayer1,scorePlayer2;
 let fps = 1000/60;
 
@@ -39,7 +38,7 @@ function drawScorePlayer1() {
     ctx.fillText(`${scorePlayer2}`, (canvas.width/2) + 60, 120);
   }
 
-// converting movement into function
+// Player1 movement 
 let up = false;
 let down = false;
 
@@ -60,7 +59,6 @@ function move(){
 	}
 
     //limit move for player 2
-
 
     document.onkeydown = function(e) {
         if(e.key == 'ArrowUp') up = true;
@@ -90,15 +88,6 @@ function drawRect(x,y,width,height,color){
     ctx.fillStyle = color;
     ctx.fillRect(x,y,width,height);
     ctx.fill()
-}
-
-// drawing circle
-
-function drawCircle(x,y,size,color){
-    ctx.beginPath();
-    ctx.fillStyle = color;
-    ctx.arc(x,y,size,0,Math.PI * 2)
-    ctx.fill();
 }
 
 function startGame() {
@@ -192,28 +181,7 @@ function stopGame() {
     ball.yv = 8;
 }
 
-// Ball movement
-function moveBall(){
-    ball.x = ball.x + ball.xv;
-    ball.y = ball.y + ball.yv;
-    // Player 1 let the ball pass
-    if (ball.x <= 0){
-        ball.x = (canvas.width/2);
-        ball.y = (canvas.height/2);
-        ball.xv, ball.yv = 8;
-        scorePlayer2++;
-    }
-    // bounce top bottom
-    if (ball.y >= canvas.height || ball.y <= 0){
-        ball.yv = -ball.yv;
-    }
-    // Player 2 let the ball pass
-    if (ball.x > canvas.width){
-        ball.x = (canvas.width/2);
-        ball.y = (canvas.height/2);
-        scorePlayer1++;
-    }
-}
+
 
 // player Move - use for computer
 function movePlayer(player){
@@ -226,11 +194,7 @@ function movePlayer(player){
     } 
 }
 
-// makes the bounce from the player a bit harder to predict
-
-function deltaY(player){
-    return ball.y - (player.y + player.height / 2)
-}
+// collisions
 
 function hitPlayer(player){
     let aLeftOfB = (player.x + player.width) < (ball.x);
