@@ -184,6 +184,8 @@ function stopGame() {
     game.style.display = 'none'
     over.style.display = 'block'
 
+    clearInterval(loop);
+
     scorePlayer1 = 0;
     scorePlayer2 = 0;
     ball.xv = 8;
