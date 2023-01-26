@@ -32,6 +32,7 @@ Definition of the different states and their transition (transition functions)
 - [MDN Dashed line](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash)
 - [Eloquent Javascript](https://eloquentjavascript.net/)
 - [StackOverFlow smooth arrow movement](https://stackoverflow.com/questions/39806858/how-to-use-arrow-keys-to-move-object-smoothly-in-canvas)
+- [Sound from OG videogame](https://www.youtube.com/watch?v=fiShX2pTz9A&t=31s)
 
 
 ## Links

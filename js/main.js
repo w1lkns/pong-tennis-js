@@ -17,6 +17,13 @@ function startPlaying(){
     render();
         }, fps);
 }
+// add sound effects
+
+let soundBallPlayer = new Audio('./../media/hitplayersound.m4a');
+let soundBallWall = new Audio('./../media/soundBallWall.m4a');
+let soundBallPoint = new Audio('./../media/soundBallScore.m4a');
+
+
 
 function checkScore(){
     if(player1.score >= highscore){
@@ -147,5 +154,6 @@ function hitPlayer(player){
     if (collide){
         ball.xv = -ball.xv;
         ball.yv = deltaY(player) * 0.25;
+        soundBallPlayer.play();
     }
 }
