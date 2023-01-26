@@ -1,6 +1,5 @@
 // init important variables
 let loop;
-let player1,player2;
 let highscore,scorePlayer1,scorePlayer2;
 let fps = 1000/60;
 
@@ -38,39 +37,6 @@ function drawScorePlayer1() {
     ctx.fillText(`${scorePlayer2}`, (canvas.width/2) + 60, 120);
   }
 
-// Player1 movement 
-let up = false;
-let down = false;
-
-function move(){
-    if(up) {
-        if (player1.y > 10){
-        player1.y -= player1.speed;
-        } else {
-            return;
-        }
-	}
-	if(down) {
-        if ((player1.y + player1.height) < canvas.height - 10){
-		player1.y += player1.speed;	
-        } else {
-            return;
-        }
-	}
-
-    //limit move for player 2
-
-    document.onkeydown = function(e) {
-        if(e.key == 'ArrowUp') up = true;
-        if(e.key == 'ArrowDown') down = true;
-    }
-    
-    document.onkeyup = function(e) {
-        if(e.key == 'ArrowUp') up = false;
-        if(e.key == 'ArrowDown') down = false;
-    }
-
-}
 
 // middle line - refactored as a function
 function drawNet(){
@@ -94,8 +60,7 @@ function startGame() {
     let start = document.getElementById('game-start');
     let game = document.getElementById('game-area');
     let over = document.getElementById('game-over');
-    //diplay none for start game screen
-    //display "" for game-area
+    
     start.style.display = 'none'
     game.style.display = 'block'
     over.style.display = 'none'
@@ -103,8 +68,6 @@ function startGame() {
     // function to start the game
     startPlaying();
 }
-
-
 
 function init (){
     player1 = {
@@ -118,7 +81,7 @@ function init (){
     player2 = {
         width:20,
         height:100,
-        offset:35,
+        offset:70,
         x:canvas.width - 30,
         y:(canvas.height / 2)-50,
         speed: 10,
@@ -179,19 +142,6 @@ function stopGame() {
     scorePlayer2 = 0;
     ball.xv = 8;
     ball.yv = 8;
-}
-
-
-
-// player Move - use for computer
-function movePlayer(player){
-    let centerY = player.y + player.height / 2;
-    if (centerY < ball.y - player.offset){
-        player.y += 10;
-    } 
-    else if (centerY > ball.y + player.offset){
-        player.y -= 10;
-    } 
 }
 
 // collisions
