@@ -1,13 +1,12 @@
 // init important variables
 let loop;
-let highscore,scorePlayer1,scorePlayer2;
+let highscore = 10;
 let fps = 1000/60;
 
 // define canvas and context
 window.onload = function(){
 canvas = document.getElementById('game-area')
 ctx = canvas.getContext('2d');
-
 }
 
 function startPlaying(){
@@ -19,24 +18,29 @@ function startPlaying(){
         }, fps);
 }
 
-// init score
-
-scorePlayer1 = 0;
-scorePlayer2 = 0;
-highscore = 10;
+function checkScore(){
+    if(player1.score >= highscore){
+        let winner1 = document.getElementById('winner')
+        winner1.innerHTML = "Player 1 Wins"
+        stopGame();
+    } else if (player2.score >= highscore){
+        let winner2 = document.getElementById('winner')
+        winner2.innerHTML = "Player 2 Wins"
+        stopGame();
+    }
+}
 
 function drawScorePlayer1() {
     ctx.font = "100px Verdana";
     ctx.fillStyle = "#FFF";
-    ctx.fillText(`${scorePlayer1}`, (canvas.width/2) - 130, 120);
+    ctx.fillText(`${player1.score}`, (canvas.width/2) - 130, 120);
   }
 
-  function drawScorePlayer2() {
+function drawScorePlayer2() {
     ctx.font = "100px Verdana";
     ctx.fillStyle = "#FFF";
-    ctx.fillText(`${scorePlayer2}`, (canvas.width/2) + 60, 120);
+    ctx.fillText(`${player2.score}`, (canvas.width/2) + 60, 120);
   }
-
 
 // middle line - refactored as a function
 function drawNet(){
@@ -77,22 +81,24 @@ function init (){
         y:(canvas.height / 2)-50,
         speed: 10,
         color: '#fff',
+        score: 0,
     }
     player2 = {
         width:20,
         height:100,
-        offset:70,
+        offset:50,
         x:canvas.width - 30,
         y:(canvas.height / 2)-50,
         speed: 10,
         color: '#fff',
+        score: 0,
     }
     ball = {
         size:18,
         x:(canvas.width / 2),
         y:(canvas.height / 2),
-        xv:10,
-        yv:10,
+        xv:7,
+        yv:7,
         color: '#fff',
     }
 }
@@ -103,18 +109,7 @@ function update() {
     movePlayer(player2); 
     hitPlayer(player1);
     hitPlayer(player2);
-    
-    // stopGame after 10 points - Will uncomment when finish
-    if (scorePlayer1 == highscore){
-        let winner1 = document.getElementById('winner')
-        winner1.innerHTML = "Player 1 Wins"
-        stopGame();
-       
-    } else if (scorePlayer2 == highscore){
-        let winner2 = document.getElementById('winner')
-        winner2.innerHTML = "Player 2 Wins"
-        stopGame();
-    }
+    checkScore();
 } 
 
 function render(){
@@ -137,15 +132,9 @@ function stopGame() {
     over.style.display = 'block'
 
     clearInterval(loop);
-
-    scorePlayer1 = 0;
-    scorePlayer2 = 0;
-    ball.xv = 8;
-    ball.yv = 8;
 }
 
 // collisions
-
 function hitPlayer(player){
     let aLeftOfB = (player.x + player.width) < (ball.x);
     let aRightOfB = (player.x) > (ball.x + ball.size);
@@ -155,7 +144,6 @@ function hitPlayer(player){
     // check if any of the above collisions are true
     let collide = !(aLeftOfB || aRightOfB || aAboveB || aBelowB)
 
-    // 
     if (collide){
         ball.xv = -ball.xv;
         ball.yv = deltaY(player) * 0.25;

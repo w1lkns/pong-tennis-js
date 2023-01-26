@@ -1,6 +1,6 @@
 let ball;
 
-// drawing circle
+// drawing ball
 
 function drawCircle(x,y,size,color){
     ctx.beginPath();
@@ -17,8 +17,7 @@ function moveBall(){
     if (ball.x <= 0){
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
-        ball.xv, ball.yv = 8;
-        scorePlayer2++;
+        player2.score++;
     }
     // bounce top bottom
     if (ball.y >= canvas.height || ball.y <= 0){
@@ -28,12 +27,11 @@ function moveBall(){
     if (ball.x > canvas.width){
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
-        scorePlayer1++;
+        player1.score++;
     }
 }
 
 // makes the bounce from the player a bit harder to predict
-
 function deltaY(player){
     return ball.y - (player.y + player.height / 2)
 }
