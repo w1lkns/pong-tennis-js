@@ -26,7 +26,7 @@ function moveBall(){
         ball.yv = -ball.yv;
     }
     // Player 2 let the ball pass
-    if (ball.x > canvas.width){
+    if (ball.x >= canvas.width){
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
         soundBallPoint.play();

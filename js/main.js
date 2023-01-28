@@ -93,7 +93,7 @@ function init (){
     player2 = {
         width:20,
         height:100,
-        offset:50,
+        offset:45,
         x:canvas.width - 30,
         y:(canvas.height / 2)-50,
         speed: 10,
