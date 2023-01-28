@@ -19,9 +19,9 @@ function startPlaying(){
 }
 // add sound effects
 
-let soundBallPlayer = new Audio('./../media/hitplayersound.m4a');
-let soundBallWall = new Audio('./../media/soundBallWall.m4a');
-let soundBallPoint = new Audio('./../media/soundBallScore.m4a');
+let soundBallPlayer = new Audio('./../media/hitplayersound.mp3');
+let soundBallWall = new Audio('./../media/soundBallWall.mp3');
+let soundBallPoint = new Audio('./../media/soundBallScore.mp3');
 
 
 
