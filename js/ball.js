@@ -17,6 +17,7 @@ function moveBall(){
     if (ball.x <= 0){
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
+        ball.xv = -ball.xv;
         soundBallPoint.play();
         player2.score++;
     }
@@ -29,6 +30,7 @@ function moveBall(){
     if (ball.x >= canvas.width){
         ball.x = (canvas.width/2);
         ball.y = (canvas.height/2);
+        ball.xv = -ball.xv;
         soundBallPoint.play();
         player1.score++;
     }
