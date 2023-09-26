@@ -7,7 +7,6 @@ The 'Pong Tennis' game is a tribute to one of the first arcade videogames releas
 MVP is for the player to play against the wall.
 
 ## Backlog
-Playing against the computer as it chases the ball up and down.
 Option to play 2 players at the same time
 
 ## Data structure
